@@ -1,10 +1,27 @@
 <resources>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+
+    <style name="Base.Theme.News" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/news_green_500</item>
+        <item name="colorOnPrimary">@color/news_yellow_500</item>
+        <item name="colorPrimaryDark">@color/news_green_700</item>
+        <item name="colorOnSurface">@color/news_black</item>
+        <item name="colorAccent">@color/news_green_700</item>
+        <item name="colorSurface">@color/news_gray_50</item>
+        <item name="colorSecondary">@color/news_yellow_500</item>
+        <item name="android:colorBackground">@color/news_green_500</item>
+    </style>
+
+    <style name="Theme.News" parent="Base.Theme.News" />
+
+    <style name="Theme.News.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.News.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="TextAppearance.News.Toolbar.Text" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
 </resources>
