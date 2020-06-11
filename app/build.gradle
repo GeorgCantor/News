@@ -15,8 +15,10 @@ android {
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary true
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "API_KEY", "\"bc0eb2dc0d13435180ee1b514c32606e\"")
+        buildConfigField("String", "BASE_URL", "\"https://newsapi.org/v2/\"")
     }
 
     buildTypes {
