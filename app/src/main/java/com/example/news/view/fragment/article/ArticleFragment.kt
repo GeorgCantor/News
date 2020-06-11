@@ -1,4 +1,4 @@
-package com.example.news.view.fragment.favorites
+package com.example.news.view.fragment.article
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -8,24 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.news.R
 
-class FavoritesFragment : Fragment() {
+class ArticleFragment : Fragment() {
 
     companion object {
-        fun newInstance() = FavoritesFragment()
+        fun newInstance() = ArticleFragment()
     }
 
-    private lateinit var viewModel: FavoritesViewModel
+    private lateinit var viewModel: ArticleViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_favorites, container, false)
+        return inflater.inflate(R.layout.fragment_article, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(FavoritesViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(ArticleViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
