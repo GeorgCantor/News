@@ -1,4 +1,4 @@
-package com.example.news.model.data
+package com.example.news.model.response
 
 data class Article(
     var title: String,
