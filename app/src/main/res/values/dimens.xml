@@ -17,4 +17,9 @@
     <dimen name="text_20sp">20sp</dimen>
     <dimen name="text_24sp">24sp</dimen>
     <dimen name="text_30sp">30sp</dimen>
+
+    <dimen name="detail_app_bar_height">278dp</dimen>
+    <dimen name="toolbar_elevation">5dp</dimen>
+    <dimen name="fab_bottom_padding">72dp</dimen>
+    <dimen name="description_min_height">555dp</dimen>
 </resources>

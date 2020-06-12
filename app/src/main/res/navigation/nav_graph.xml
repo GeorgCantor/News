@@ -2,6 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/view_pager_fragment">
 
     <fragment
@@ -9,7 +10,7 @@
         android:name="com.example.news.view.fragment.home.HomeViewPagerFragment"
         tools:layout="@layout/fragment_view_pager">
         <action
-            android:id="@+id/action_view_pager_fragment_to_plant_detail_fragment"
+            android:id="@+id/action_view_pager_fragment_to_article_fragment"
             app:destination="@id/article_fragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
@@ -21,10 +22,6 @@
         android:id="@+id/article_fragment"
         android:name="com.example.news.view.fragment.article.ArticleFragment"
         android:label="@string/article"
-        tools:layout="@layout/fragment_article">
-<!--        <argument-->
-<!--            android:name="plantId"-->
-<!--            app:argType="string" />-->
-    </fragment>
+        tools:layout="@layout/fragment_article" />
 
 </navigation>

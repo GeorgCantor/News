@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.news.R
+import com.example.news.util.Constants.ARTICLE_ARG
 import com.example.news.util.EndlessScrollListener
 import com.example.news.util.observe
 import com.example.news.util.shortToast
+import com.example.news.view.fragment.news.adapter.NewsAdapter
 import kotlinx.android.synthetic.main.fragment_news.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.core.parameter.parametersOf
@@ -17,7 +20,7 @@ class NewsFragment : Fragment() {
 
     private lateinit var viewModel: NewsViewModel
     private lateinit var adapter: NewsAdapter
-    var isFirstRequest = true
+    private var isFirstRequest = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,11 +44,16 @@ class NewsFragment : Fragment() {
             news.observe(viewLifecycleOwner) {
                 when (isFirstRequest) {
                     true -> {
-                        adapter = NewsAdapter(it) { context?.shortToast(it.title) }
+                        adapter = NewsAdapter(it, it) {
+                            findNavController().navigate(
+                                R.id.action_view_pager_fragment_to_article_fragment,
+                                Bundle().apply { putParcelable(ARTICLE_ARG, it) }
+                            )
+                        }
                         news_recycler.adapter = adapter
                         isFirstRequest = false
                     }
-                    false -> adapter.updateList(it)
+                    false -> adapter.updateList(it, it)
                 }
             }
         }

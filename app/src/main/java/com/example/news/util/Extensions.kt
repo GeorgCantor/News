@@ -19,9 +19,9 @@ fun Context.shortToast(message: String) = makeText(this, message, LENGTH_SHORT).
 
 fun Context.longToast(message: String) = makeText(this, message, LENGTH_LONG).show()
 
-fun Context.loadImage(url: String, view: ImageView) = Glide.with(this)
+fun Context.loadImage(url: String?, view: ImageView) = Glide.with(this)
     .load(url)
-    .placeholder(android.R.drawable.screen_background_dark)
+    .placeholder(android.R.drawable.screen_background_dark_transparent)
     .thumbnail(0.1F)
     .into(view)
 
