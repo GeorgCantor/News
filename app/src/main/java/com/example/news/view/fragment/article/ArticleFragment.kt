@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.news.R
 import com.example.news.model.response.Article
 import com.example.news.util.Constants.ARTICLE_ARG
@@ -22,6 +24,13 @@ class ArticleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_article_fragment_to_view_pager_fragment)
+            }
+        }
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, callback)
 
         (arguments?.getParcelable(ARTICLE_ARG) as? Article).apply {
             context?.loadImage(this?.urlToImage, image)

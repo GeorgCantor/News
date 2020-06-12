@@ -10,7 +10,10 @@ import com.example.news.model.response.Article
 import com.example.news.util.loadImage
 import kotlinx.android.synthetic.main.item_nested.view.*
 
-class NestedAdapter(news: List<Article>) : RecyclerView.Adapter<NestedAdapter.NestedViewHolder>() {
+class NestedAdapter(
+    news: List<Article>,
+    private val clickListener: (Article) -> Unit
+) : RecyclerView.Adapter<NestedAdapter.NestedViewHolder>() {
 
     val news = mutableListOf<Article>()
 
@@ -29,6 +32,7 @@ class NestedAdapter(news: List<Article>) : RecyclerView.Adapter<NestedAdapter.Ne
 
         with(holder) {
             itemView.context.loadImage(article.urlToImage, image)
+            itemView.setOnClickListener { clickListener(article) }
         }
     }
 

@@ -22,6 +22,11 @@
         android:id="@+id/article_fragment"
         android:name="com.example.news.view.fragment.article.ArticleFragment"
         android:label="@string/article"
-        tools:layout="@layout/fragment_article" />
+        tools:layout="@layout/fragment_article">
+        <action
+            android:id="@+id/action_article_fragment_to_view_pager_fragment"
+            app:destination="@id/view_pager_fragment"
+            app:popUpTo="@id/nav_graph" />
+    </fragment>
 
 </navigation>

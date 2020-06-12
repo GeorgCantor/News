@@ -20,6 +20,7 @@ class NewsViewModel(
     private val context = getApplication<MyApplication>()
 
     val news = MutableLiveData<List<Article>>()
+    val nestedNews = MutableLiveData<List<Article>>()
     val isProgressVisible = MutableLiveData<Boolean>().apply { this.value = true }
     val error = MutableLiveData<String>()
 
@@ -37,6 +38,20 @@ class NewsViewModel(
                 errorBody()?.let { error.postValue(it.toString()) }
                 news.postValue(body()?.articles)
             }
+            repository.getNews(getTopic(page), 1).apply {
+                errorBody()?.let { error.postValue(it.toString()) }
+                nestedNews.postValue(body()?.articles)
+            }
+            isProgressVisible.postValue(false)
         }
+    }
+
+    private fun getTopic(index: Int) = when (index) {
+        1 -> "Sport"
+        2 -> "World"
+        3 -> "Europe"
+        4 -> "Cinema"
+        5 -> "Science"
+        else -> "Russia"
     }
 }

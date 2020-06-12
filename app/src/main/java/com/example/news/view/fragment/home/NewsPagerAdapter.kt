@@ -5,8 +5,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.news.view.fragment.favorites.FavoritesFragment
 import com.example.news.view.fragment.news.NewsFragment
 
-const val FAV_PAGE_INDEX = 0
-const val NEWS_PAGE_INDEX = 1
+const val NEWS_PAGE_INDEX = 0
+const val FAV_PAGE_INDEX = 1
 
 class NewsPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 

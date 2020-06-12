@@ -3,10 +3,13 @@ package com.example.news.view.fragment.news
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.news.R
+import com.example.news.model.response.Article
 import com.example.news.util.Constants.ARTICLE_ARG
 import com.example.news.util.EndlessScrollListener
 import com.example.news.util.observe
@@ -39,21 +42,24 @@ class NewsFragment : Fragment() {
         with(viewModel) {
             getNews("Business", 1)
 
+            isProgressVisible.observe(viewLifecycleOwner) { visible ->
+                progress_bar.visibility = if (visible) VISIBLE else GONE
+            }
+
             error.observe(viewLifecycleOwner) { context?.shortToast(it) }
 
-            news.observe(viewLifecycleOwner) {
+            news.observe(viewLifecycleOwner) { news ->
                 when (isFirstRequest) {
                     true -> {
-                        adapter = NewsAdapter(it, it) {
-                            findNavController().navigate(
-                                R.id.action_view_pager_fragment_to_article_fragment,
-                                Bundle().apply { putParcelable(ARTICLE_ARG, it) }
-                            )
-                        }
+                        adapter = NewsAdapter(news, news, { openDetail(it) }, { openDetail(it) })
                         news_recycler.adapter = adapter
                         isFirstRequest = false
                     }
-                    false -> adapter.updateList(it, it)
+                    false -> {
+                        nestedNews.observe(viewLifecycleOwner) {
+                            adapter.updateList(news, it)
+                        }
+                    }
                 }
             }
         }
@@ -65,5 +71,12 @@ class NewsFragment : Fragment() {
         }
 
         news_recycler.addOnScrollListener(scrollListener)
+    }
+
+    private fun openDetail(article: Article) {
+        findNavController().navigate(
+            R.id.action_view_pager_fragment_to_article_fragment,
+            Bundle().apply { putParcelable(ARTICLE_ARG, article) }
+        )
     }
 }

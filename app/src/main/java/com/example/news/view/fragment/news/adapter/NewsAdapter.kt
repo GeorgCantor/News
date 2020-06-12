@@ -15,7 +15,8 @@ import kotlinx.android.synthetic.main.item_news.view.*
 class NewsAdapter(
     news: List<Article>,
     nestedNews: List<Article>,
-    private val clickListener: (Article) -> Unit
+    private val clickListener: (Article) -> Unit,
+    private val nestedClickListener: (Article) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -33,6 +34,7 @@ class NewsAdapter(
 
     fun updateList(news: List<Article>, nestedNews: List<Article>) {
         this.news.addAll(news)
+        this.nestedNews.clear()
         this.nestedNews.addAll(nestedNews)
         notifyDataSetChanged()
     }
@@ -77,7 +79,9 @@ class NewsAdapter(
                 }
                 is NestedRecyclerViewHolder -> {
                     recyclerView.setHasFixedSize(true)
-                    recyclerView.adapter = NestedAdapter(nestedNews)
+                    recyclerView.adapter = NestedAdapter(nestedNews) {
+                        nestedClickListener(it)
+                    }
                 }
             }
         }

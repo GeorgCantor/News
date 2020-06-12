@@ -2,6 +2,8 @@ package com.example.news.util
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.view.View
+import android.view.View.*
 import android.widget.ImageView
 import android.widget.Toast.*
 import androidx.lifecycle.LifecycleOwner
@@ -24,6 +26,12 @@ fun Context.loadImage(url: String?, view: ImageView) = Glide.with(this)
     .placeholder(android.R.drawable.screen_background_dark_transparent)
     .thumbnail(0.1F)
     .into(view)
+
+fun View.visible() { visibility = VISIBLE }
+
+fun View.invisible() { visibility = INVISIBLE }
+
+fun View.gone() { visibility = GONE }
 
 inline fun <T> LiveData<T>.observe(
     owner: LifecycleOwner,
