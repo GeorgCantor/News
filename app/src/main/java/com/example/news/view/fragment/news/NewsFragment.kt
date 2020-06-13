@@ -10,7 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.news.R
 import com.example.news.model.response.Article
-import com.example.news.util.Constants.ARTICLE_ARG
+import com.example.news.util.Constants.ARG_ARTICLE
+import com.example.news.util.Constants.ARG_QUERY
 import com.example.news.util.EndlessScrollListener
 import com.example.news.util.observe
 import com.example.news.util.shortToast
@@ -20,6 +21,14 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.core.parameter.parametersOf
 
 class NewsFragment : Fragment() {
+
+    companion object {
+        fun create(query: String): NewsFragment {
+            return NewsFragment().apply {
+                arguments = Bundle().apply { putString(ARG_QUERY, query) }
+            }
+        }
+    }
 
     private lateinit var viewModel: NewsViewModel
     private lateinit var adapter: NewsAdapter
@@ -39,8 +48,10 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val query = arguments?.getString(ARG_QUERY) ?: ""
+
         with(viewModel) {
-            getNews("Business", 1)
+            getNews(query, 1)
 
             isProgressVisible.observe(viewLifecycleOwner) { visible ->
                 progress_bar.visibility = if (visible) VISIBLE else GONE
@@ -66,7 +77,7 @@ class NewsFragment : Fragment() {
 
         val scrollListener = object : EndlessScrollListener() {
             override fun onLoadMore(page: Int, totalItemsCount: Int) {
-                viewModel.getNews("Business", page)
+                viewModel.getNews(query, page)
             }
         }
 
@@ -76,7 +87,7 @@ class NewsFragment : Fragment() {
     private fun openDetail(article: Article) {
         findNavController().navigate(
             R.id.action_view_pager_fragment_to_article_fragment,
-            Bundle().apply { putParcelable(ARTICLE_ARG, article) }
+            Bundle().apply { putParcelable(ARG_ARTICLE, article) }
         )
     }
 }

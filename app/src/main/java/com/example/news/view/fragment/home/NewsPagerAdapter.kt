@@ -2,17 +2,19 @@ package com.example.news.view.fragment.home
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.news.R
+import com.example.news.util.Constants.BUSINESS_PAGE
+import com.example.news.util.Constants.FAV_PAGE
+import com.example.news.util.Constants.SCIENCE_PAGE
 import com.example.news.view.fragment.favorites.FavoritesFragment
 import com.example.news.view.fragment.news.NewsFragment
-
-const val NEWS_PAGE_INDEX = 0
-const val FAV_PAGE_INDEX = 1
 
 class NewsPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     private val tabFragmentsCreators: Map<Int, () -> Fragment> = mapOf(
-        FAV_PAGE_INDEX to { FavoritesFragment() },
-        NEWS_PAGE_INDEX to { NewsFragment() }
+        BUSINESS_PAGE to { NewsFragment.create(fragment.context?.getString(R.string.business) ?: "") },
+        SCIENCE_PAGE to { NewsFragment.create(fragment.context?.getString(R.string.science) ?: "") },
+        FAV_PAGE to { FavoritesFragment() }
     )
 
     override fun getItemCount() = tabFragmentsCreators.size

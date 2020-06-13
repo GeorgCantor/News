@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.news.R
 import com.example.news.model.response.Article
-import com.example.news.util.Constants.ARTICLE_ARG
+import com.example.news.util.Constants.ARG_ARTICLE
 import com.example.news.util.loadImage
 import kotlinx.android.synthetic.main.fragment_article.*
 
@@ -32,7 +32,7 @@ class ArticleFragment : Fragment() {
         }
         activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, callback)
 
-        (arguments?.getParcelable(ARTICLE_ARG) as? Article).apply {
+        (arguments?.getParcelable(ARG_ARTICLE) as? Article).apply {
             context?.loadImage(this?.urlToImage, image)
             title.text = this?.title
             description.text = this?.description

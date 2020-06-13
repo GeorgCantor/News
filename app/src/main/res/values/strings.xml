@@ -3,4 +3,7 @@
     <string name="article">Article</string>
     <string name="internet_unavailable">Internet unavailable</string>
     <string name="share_image">Share image</string>
+    <string name="business">Business</string>
+    <string name="favorites">Favorites</string>
+    <string name="science">Science</string>
 </resources>

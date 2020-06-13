@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.news.R
+import com.example.news.util.Constants.BUSINESS_PAGE
+import com.example.news.util.Constants.FAV_PAGE
+import com.example.news.util.Constants.SCIENCE_PAGE
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_view_pager.*
 
@@ -31,14 +34,16 @@ class HomeViewPagerFragment : Fragment() {
     }
 
     private fun getTabIcon(position: Int) = when (position) {
-        FAV_PAGE_INDEX -> R.drawable.fav_tab_selector
-        NEWS_PAGE_INDEX -> R.drawable.news_tab_selector
+        BUSINESS_PAGE -> R.drawable.business_tab_selector
+        SCIENCE_PAGE -> R.drawable.science_tab_selector
+        FAV_PAGE -> R.drawable.fav_tab_selector
         else -> throw IndexOutOfBoundsException()
     }
 
     private fun getTabTitle(position: Int) = when (position) {
-        FAV_PAGE_INDEX -> "Favorites"
-        NEWS_PAGE_INDEX -> "News"
+        BUSINESS_PAGE -> getString(R.string.business)
+        SCIENCE_PAGE -> getString(R.string.science)
+        FAV_PAGE -> getString(R.string.favorites)
         else -> null
     }
 }
