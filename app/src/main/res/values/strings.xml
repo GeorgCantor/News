@@ -6,4 +6,5 @@
     <string name="business">Business</string>
     <string name="favorites">Favorites</string>
     <string name="science">Science</string>
+    <string name="choose_theme_text">Choose theme</string>
 </resources>
