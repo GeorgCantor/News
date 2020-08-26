@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">@color/news_black</color>
     <color name="news_black">#de000000</color>
     <color name="news_gray_50">#fafafa</color>
     <color name="news_gray_50_a600">#99fafafa</color>
