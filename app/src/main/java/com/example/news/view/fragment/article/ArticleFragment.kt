@@ -1,9 +1,7 @@
 package com.example.news.view.fragment.article
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -13,14 +11,9 @@ import com.example.news.util.Constants.ARG_ARTICLE
 import com.example.news.util.loadImage
 import kotlinx.android.synthetic.main.fragment_article.*
 
-class ArticleFragment : Fragment() {
+class ArticleFragment : Fragment(R.layout.fragment_article) {
 
     private lateinit var viewModel: ArticleViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_article, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -1,11 +1,9 @@
 package com.example.news.view.fragment.news
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate.*
@@ -24,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_news.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.core.parameter.parametersOf
 
-class NewsFragment : Fragment() {
+class NewsFragment : Fragment(R.layout.fragment_news) {
 
     companion object {
         fun create(query: String): NewsFragment {
@@ -42,12 +40,6 @@ class NewsFragment : Fragment() {
         super.onCreate(savedInstanceState)
         viewModel = getViewModel { parametersOf() }
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_news, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -86,8 +78,6 @@ class NewsFragment : Fragment() {
         }
 
         news_recycler.addOnScrollListener(scrollListener)
-
-        fab.setOnClickListener { chooseThemeDialog() }
     }
 
     private fun openDetail(article: Article) {

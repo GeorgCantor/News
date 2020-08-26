@@ -1,14 +1,14 @@
 <resources>
 
     <style name="Base.Theme.News" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/news_green_500</item>
-        <item name="colorOnPrimary">@color/news_yellow_500</item>
-        <item name="colorPrimaryDark">@color/news_green_700</item>
+        <item name="colorPrimary">@color/news_gray_50</item>
+        <item name="colorOnPrimary">@color/news_black</item>
+        <item name="colorPrimaryDark">@color/news_gray_50_a600</item>
         <item name="colorOnSurface">@color/news_black</item>
         <item name="colorAccent">@color/news_green_700</item>
         <item name="colorSurface">@color/news_gray_50</item>
-        <item name="colorSecondary">@color/news_yellow_500</item>
-        <item name="android:colorBackground">@color/news_green_500</item>
+        <item name="colorSecondary">@color/news_black</item>
+        <item name="android:colorBackground">@color/news_gray_50</item>
     </style>
 
     <style name="Theme.News" parent="Base.Theme.News" />

@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.news.MyApplication
 import com.example.news.R
 import com.example.news.model.response.Article
 import com.example.news.repository.Repository
@@ -17,8 +16,6 @@ class NewsViewModel(
     private val repository: Repository
 ) : AndroidViewModel(app) {
 
-    private val context = getApplication<MyApplication>()
-
     val news = MutableLiveData<List<Article>>()
     val nestedNews = MutableLiveData<List<Article>>()
     val isProgressVisible = MutableLiveData<Boolean>().apply { this.value = true }
@@ -26,7 +23,7 @@ class NewsViewModel(
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         when (throwable.message) {
-            ERROR_504 -> error.postValue(context.getString(R.string.internet_unavailable))
+            ERROR_504 -> error.postValue(app.baseContext.getString(R.string.internet_unavailable))
             else -> error.postValue(throwable.message)
         }
         isProgressVisible.postValue(false)

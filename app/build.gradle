@@ -5,18 +5,16 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.1"
 
     defaultConfig {
         applicationId "com.example.news"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
         buildConfigField("String", "API_KEY", "\"bc0eb2dc0d13435180ee1b514c32606e\"")
         buildConfigField("String", "BASE_URL", "\"https://newsapi.org/v2/\"")
     }
@@ -72,14 +70,4 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
     implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.logInterceptorVersion"
-
-    // testing
-    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion"
-    androidTestImplementation "androidx.test.ext:junit:$rootProject.testExtJunit"
-    androidTestImplementation "androidx.test.uiautomator:uiautomator:$rootProject.uiAutomatorVersion"
-    androidTestImplementation "com.google.truth:truth:$rootProject.truthVersion"
-    testImplementation "junit:junit:$rootProject.junitVersion"
 }
